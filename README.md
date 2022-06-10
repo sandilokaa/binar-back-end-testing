@@ -1,10 +1,11 @@
-# BCR API - Chapter 7
+# BCR API - Chapter 8
 
 BCR API is Challenge Chapter 8 given by Binar Academy.
 
 
 ### Heroku URL
 
-```
+```typescript
+
 https://binar-back-end-testing.herokuapp.com/
 ```
