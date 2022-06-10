@@ -12,6 +12,12 @@ const { User } = require("../../models");
 // ------------------ End Authorize ------------------ //
 
 
+// ------------------ Handle Register ------------------ //
+
+
+
+// ------------------ End Handle Register ------------------ //
+
 
 // ------------------ Create Token From User ------------------ //
 
@@ -124,7 +130,7 @@ describe("verifyPassword", () => {
         const hashedPassword = bcrypt.hashSync(password, 10);
 
         const comparePassword = bcrypt.compareSync(password, hashedPassword)
-    
+
         const app = new AuthenticationController({
             jwt: jsonwebtoken,
             bcrypt: bcrypt,
