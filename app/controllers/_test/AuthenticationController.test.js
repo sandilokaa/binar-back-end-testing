@@ -45,7 +45,7 @@ describe('POST /v1/auth/register', () => {
     })
 
     it('should response with 422 as status code', async () => {
-        const name = 'sanlok'
+        const name = 'Member'
         const password = 'sanlok12345'
 
         return request(app)
