@@ -1,6 +1,6 @@
-const app = require('../../app')
-const request = require("supertest")
-const models = require("../../app/models")
+const app = require('../../app');
+const request = require("supertest");
+const models = require("../../app/models");
 
 
 describe("Auth intergration test", () => {
@@ -11,15 +11,15 @@ describe("Auth intergration test", () => {
             let token
             const credentials = {
                 email: "sanlokaja@example.com",
-                password: "sanlokaja1234"
-            }
+                password: "sanlokaja1234",
+            };
             beforeAll((done) => {
                 request(app)
                     .post("/v1/auth/login")
                     .send(credentials)
                     .end((err, res) => {
                         token = res.body.accessToken
-                        done()
+                        done();
                     });
             });
             it('should returning status code 200 and return the current user', (done) => {
@@ -27,7 +27,7 @@ describe("Auth intergration test", () => {
                     .get("/v1/auth/whoami")
                     .set("Authorization", `Bearer ${token}`)
                     .expect("content-type", /json/)
-                    .expect(200, done)
+                    .expect(200, done);
             });
         });
 
@@ -35,13 +35,13 @@ describe("Auth intergration test", () => {
             it('should be returning status code 201 and return the acess token ', (done) => {
                 const credentials = {
                     email: "sanlokaja@example.com",
-                    password: "sanlokaja1234"
+                    password: "sanlokaja1234",
                 }
 
                 request(app)
                     .post("/v1/auth/login")
                     .send(credentials)
-                    .expect(201, done)
+                    .expect(201, done);
             });
         });
 
@@ -50,8 +50,8 @@ describe("Auth intergration test", () => {
                 const register = {
                     name: "sanlokaja",
                     email: "sanlokaja@example.com",
-                    password: "sanlokaja1234"
-                }
+                    password: "sanlokaja1234",
+                };
 
                 request(app)
                     .post("/v1/auth/register")
@@ -62,9 +62,9 @@ describe("Auth intergration test", () => {
                             where: {
                                 name: "sanlokaja",
                                 email: "sanlokaja@example.com"
-                            }
-                        })
-                        done()
+                            },
+                        });
+                        done();
                     })
             });
         });
@@ -76,13 +76,13 @@ describe("Auth intergration test", () => {
             it('should be returning status code 404 and error email not registered ', (done) => {
                 const credentials = {
                     email: "sanlokaja@example.com",
-                    password: "sanlokaja1234"
-                }
+                    password: "sanlokaja1234",
+                };
 
                 request(app)
                     .post("/v1/auth/login")
                     .send(credentials)
-                    .expect(404, done)
+                    .expect(404, done);
             });
         });
 
@@ -90,24 +90,24 @@ describe("Auth intergration test", () => {
             it('should be returning status code 401 and error wrong password ', (done) => {
                 const credentials = {
                     email: "sanlokaja@example.com",
-                    password: "sanlokaja1234"
+                    password: "sanlokaja1234",
                 }
 
                 request(app)
                     .post("/v1/auth/login")
                     .send(credentials)
-                    .expect(401, done)
+                    .expect(401, done);
             });
         });
 
         describe('POST /v1/auth/login', () => {
             it('should be returning status code 500 and internal server error ', (done) => {
-                const credentials = {}
+                const credentials = {};
 
                 request(app)
                     .post("/v1/auth/login")
                     .send(credentials)
-                    .expect(500, done)
+                    .expect(500, done);
             });
         });
 
@@ -116,24 +116,24 @@ describe("Auth intergration test", () => {
                 const register = {
                     name: "johnny",
                     email: "sanlokaja@example.com",
-                    password: "sanlokaja1234"
+                    password: "sanlokaja1234",
                 }
 
                 request(app)
                     .post("/v1/auth/register")
                     .send(register)
-                    .expect(422, done)
+                    .expect(422, done);
             });
         });
 
         describe('POST /v1/auth/register', () => {
             it('should be returning status code 500 and internal server error', (done) => {
-                const register = {}
+                const register = {};
 
                 request(app)
                     .post("/v1/auth/register")
                     .send(register)
-                    .expect(500, done)
+                    .expect(500, done);
             });
         });
 
@@ -141,15 +141,15 @@ describe("Auth intergration test", () => {
             let token
             const credentials = {
                 email: "sanlokaja@example.com",
-                password: "sanlokaja1234"
+                password: "sanlokaja1234",
             }
             beforeAll((done) => {
                 request(app)
                     .post("/v1/auth/login")
                     .send(credentials)
                     .end((err, res) => {
-                        token = res.body.accessToken
-                        done()
+                        token = res.body.accessToken;
+                        done();
                     });
             });
             it('should returning status code 401 and insufficient access error', (done) => {
@@ -157,7 +157,7 @@ describe("Auth intergration test", () => {
                     .get("/v1/auth/whoami")
                     .set("Authorization", `Bearer ${token}`)
                     .expect("content-type", /json/)
-                    .expect(401, done)
+                    .expect(401, done);
             });
         });
     });
