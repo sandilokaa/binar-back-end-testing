@@ -1,12 +1,25 @@
-require("dotenv").config();
+// require("dotenv").config();
+
+const config = new URL(
+  process.env.DATABASE_URL ||
+      "postgres://postgres:sanlokaja123@127.0.0.1:5432/binar-back-end"
+)
+
+const {
+  DB_USER = config.username,
+  DB_PASSWORD = config.password,
+  DB_NAME = config.pathname.replace("/", ""),
+  DB_HOST = config.hostname,
+  DB_PORT = "5432",
+} = process.env
 
 module.exports = {
   development: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    host: DB_HOST,
+    port: DB_PORT,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
@@ -16,11 +29,11 @@ module.exports = {
     },
   },
   test: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    host: DB_HOST,
+    port: DB_PORT,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
@@ -30,11 +43,11 @@ module.exports = {
     },
   },
   production: {
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
+    username: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    host: DB_HOST,
+    port: DB_PORT,
     dialect: "postgres",
     dialectOptions: {
       ssl: {
