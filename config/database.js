@@ -1,9 +1,9 @@
-// require("dotenv").config();
+require("dotenv").config();
 
 const config = new URL(
   process.env.DATABASE_URL ||
-      "postgres://postgres:sanlokaja123@127.0.0.1:5432/binar-back-end"
-)
+      `postgres://${process.env.DB_NAME}:${process.env.DB_PASSWORD}@127.0.0.1:${process.env.DB_PORT}/${process.env.DB_NAME}`
+);
 
 const {
   DB_USER = config.username,
@@ -11,7 +11,7 @@ const {
   DB_NAME = config.pathname.replace("/", ""),
   DB_HOST = config.hostname,
   DB_PORT = "5432",
-} = process.env
+} = process.env;
 
 module.exports = {
   development: {
